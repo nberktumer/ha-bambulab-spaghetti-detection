@@ -228,7 +228,7 @@ action:
           data:
             obico_host: !input obico_host
             obico_auth_token: !input obico_auth_token
-            image_path: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
+            image_url: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
           response_variable: result
 
         - service: number.set_value
