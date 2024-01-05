@@ -374,7 +374,7 @@ action:
         - choose:
           - conditions:
             - condition: template
-              value_template: "{{ is_state(FAILURE_ACTION_VAR, 'pause') }}"
+              value_template: "{{ FAILURE_ACTION_VAR == 'pause' }}"
             sequence:
               - service: button.press
                 data: {}
@@ -382,7 +382,7 @@ action:
                   entity_id: !input printer_pause_button
           - conditions:
             - condition: template
-              value_template: "{{ is_state(FAILURE_ACTION_VAR, 'stop') }}"
+              value_template: "{{ FAILURE_ACTION_VAR == 'stop' }}"
             sequence:
               - service: button.press
                 data: {}
@@ -392,7 +392,7 @@ action:
         - choose:
           - conditions:
             - condition: template
-              value_template: "{{ is_state(NOTIFICATION_SETTINGS_VAR, 'critical') }}"
+              value_template: "{{ NOTIFICATION_SETTINGS_VAR == 'critical' }}"
             sequence:
               - service: notify.notify
                 data:
@@ -415,7 +415,7 @@ action:
                         title: Stop Printing
           - conditions:
             - condition: template
-              value_template: "{{ is_state(NOTIFICATION_SETTINGS_VAR, 'standard') }}"
+              value_template: "{{ NOTIFICATION_SETTINGS_VAR == 'standard' }}"
             sequence:
               - service: notify.notify
                 data:
