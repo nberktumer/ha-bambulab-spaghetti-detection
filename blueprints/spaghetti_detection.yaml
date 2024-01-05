@@ -434,6 +434,6 @@ action:
             datetime: >-
               {{ now() }}
           target:
-            entity_id: datetime.bambu_lab_p1_spaghetti_detection_last_notif_time
+            entity_id: datetime.bambu_lab_p1_spaghetti_detection_last_notify_time
 
 
