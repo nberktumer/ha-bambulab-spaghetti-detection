@@ -27,7 +27,12 @@ class BambuLabP1SpaghettiDetectionDateTimeEntity(DateTimeEntity):
         self._attr_unique_id = "number.bambu_lab_p1_spaghetti_detection_%s" % entity_description.key
         self._attr_native_value = datetime.fromtimestamp(0, timezone.utc)
 
-    async def async_set_native_value(self, value: datetime) -> None:
+    async def async_set_value(self, value: datetime) -> None:
+        """Set the value of the number entity."""
+        self._attr_native_value = value
+        self.async_write_ha_state()
+
+    async def set_value(self, value: datetime) -> None:
         """Set the value of the number entity."""
         self._attr_native_value = value
         self.async_write_ha_state()
