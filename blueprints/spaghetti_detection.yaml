@@ -397,7 +397,7 @@ action:
               - service: notify.notify
                 data:
                   title: "Bambu Lab P1S - Spaghetti Detected"
-                  message: "Confidence: {{ states('number.bambu_lab_p1_spaghetti_detection_normalized_p') | float * 100 | int }}%"
+                  message: "Confidence: {{ (states('number.bambu_lab_p1_spaghetti_detection_normalized_p') | float * 100) | int }}%"
                   data:
                     image: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
                     ttl: 0
@@ -420,7 +420,7 @@ action:
               - service: notify.notify
                 data:
                   title: "Bambu Lab P1S - Spaghetti Detected"
-                  message: "Confidence: {{ states('number.bambu_lab_p1_spaghetti_detection_normalized_p') | float * 100 | int }}%"
+                  message: "Confidence: {{ (states('number.bambu_lab_p1_spaghetti_detection_normalized_p') | float * 100) | int }}%"
                   data:
                     image: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
                     actions:
