@@ -226,7 +226,6 @@ action:
                   - !input printer_chamber_light
         - service: bambu_lab_p1_spaghetti_detection.predict
           data:
-            home_assistant_host: !input home_assistant_host
             obico_host: !input obico_host
             obico_auth_token: !input obico_auth_token
             image_path: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
