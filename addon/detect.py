@@ -2,11 +2,10 @@
 import cv2
 from dataclasses import asdict
 import json
-from lib.geometry import compare_detections, Detection
+from addon import compare_detections, Detection
 import os
 import argparse
 import time
-from lib.detection_model import *
 
 KNOWN_IMAGE_EXTENSIONS = ('.jpg', '.png')
 KNOWN_VIDEO_EXTENSIONS = ('.mp4', '.avi')
@@ -25,7 +24,7 @@ if __name__ == "__main__":
     parser.add_argument("--print", action='store_true', help="Print detections")
     opt = parser.parse_args()
 
-    net_main_1 = load_net("model/model.cfg", "model/model.meta", weights_path=opt.weights)
+    net_main_1 = load_net("rootfs/model/model.cfg", "rootfs/model/model.meta", weights_path=opt.weights)
 
     # force use CPU, only implemented for ONNX
     if opt.cpu and onnx_ready and isinstance(net_main_1, OnnxNet):

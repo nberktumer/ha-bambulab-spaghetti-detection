@@ -6,7 +6,6 @@ import voluptuous as vol
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant, ServiceCall, ServiceResponse, SupportsResponse
-from homeassistant.helpers.network import get_url
 
 DOMAIN = "bambu_lab_p1_spaghetti_detection"
 BRAND = "Bambu Lab P1 - Spaghetti Detection"
@@ -16,9 +15,9 @@ LOGGER = logging.getLogger(__package__)
 PLATFORMS = [Platform.NUMBER, Platform.DATETIME]
 
 SPAGHETTI_DETECTION_SCHEMA = vol.Schema({
-    vol.Required("host"): str,
-    vol.Required("auth_token"): str,
-    vol.Required("image_path"): str,
+    vol.Required("obico_host"): str,
+    vol.Required("obico_auth_token"): str,
+    vol.Required("image_url"): str,
 })
 
 
@@ -28,19 +27,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     async def spaghetti_detection_handler(call: ServiceCall) -> ServiceResponse:
         """Handle the custom service."""
-        host = call.data.get("host", "")
-        token = call.data.get("auth_token", "")
-        image_path = call.data.get("image_path", "")
+        obico_host = call.data.get("obico_host", "")
+        obico_auth_token = call.data.get("obico_auth_token", "")
+        image_url = call.data.get("image_url", "")
 
-        if host.endswith("/"):
-            host = host[:-1]
+        if obico_host.endswith("/"):
+            obico_host = obico_host[:-1]
 
         async with aiohttp.ClientSession() as session:
-            async with session.get(f"{host}/p/?img={get_url(hass)}{image_path}",
-                                   headers={"Authorization": f"Bearer {token}"}) as response:
+            async with session.get(f"{obico_host}/p/?img={image_url}",
+                                   headers={"Authorization": f"Bearer {obico_auth_token}"}) as response:
                 result = await response.json()
 
-        return {"hass_base_url": get_url(hass, prefer_external=True, allow_ip=False), "result": result}
+        return {"result": result}
 
     hass.services.async_register(
         DOMAIN,

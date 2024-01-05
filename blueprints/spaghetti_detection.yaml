@@ -3,6 +3,10 @@ blueprint:
   description: Bambu Lab P1 - Spaghetti Detection
   domain: automation
   input:
+    home_assistant_host:
+      name: Home Assistant Host
+      description: Home Assistant host
+      default: "http://192.168.1.123:8123"
     obico_host:
       name: Obico ML API Host
       description: Obico ML API host
@@ -95,6 +99,7 @@ blueprint:
               domain: light
 
 variables:
+  HOME_ASSISTANT_HOST_VAR: !input home_assistant_host
   PRINTER_CAMERA_IMG_VAR: !input printer_camera_image
   FAILURE_ACTION_VAR: !input failure_action
   NOTIFICATION_SETTINGS_VAR: !input notification_settings
@@ -221,9 +226,10 @@ action:
                   - !input printer_chamber_light
         - service: bambu_lab_p1_spaghetti_detection.predict
           data:
-            host: !input obico_host
-            auth_token: !input obico_auth_token
-            image_path: "{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
+            home_assistant_host: !input home_assistant_host
+            obico_host: !input obico_host
+            obico_auth_token: !input obico_auth_token
+            image_path: "{{ HOME_ASSISTANT_HOST_VAR }}/{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
           response_variable: result
 
         - service: number.set_value
@@ -394,7 +400,7 @@ action:
                   title: "Bambu Lab P1S - Spaghetti Detected"
                   message: "Confidence: {{ states('number.bambu_lab_p1_spaghetti_detection_normalized_p') | float * 100 | int }}%"
                   data:
-                    image: "{{ result.hass_base_url }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
+                    image: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
                     ttl: 0
                     priority: high
                     channel: alarm_stream
@@ -417,7 +423,7 @@ action:
                   title: "Bambu Lab P1S - Spaghetti Detected"
                   message: "Confidence: {{ states('number.bambu_lab_p1_spaghetti_detection_normalized_p') | float * 100 | int }}%"
                   data:
-                    image: "{{ result.hass_base_url }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
+                    image: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_IMG_VAR, 'entity_picture') }}"
                     actions:
                       - action: BAMBU_LAB_RESUME_PRINTING
                         title: Resume Printing

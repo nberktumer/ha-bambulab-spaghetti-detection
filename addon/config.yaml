@@ -4,11 +4,7 @@ version: "1.0.0"
 slug: "bambu_lab_p1_spaghetti_detection"
 init: false
 arch:
-  - aarch64
   - amd64
-  - armhf
-  - armv7
-  - i386
 startup: services
 ports:
   3333/tcp: 3333
