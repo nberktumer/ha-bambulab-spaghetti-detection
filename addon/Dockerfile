@@ -1,1 +1,1 @@
-FROM nberk/bambu_lab_p1_spaghetti_detection
+FROM nberk/ha_bambulab_p1_spaghetti_detection_addon:latest
