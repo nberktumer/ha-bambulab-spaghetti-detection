@@ -27,6 +27,9 @@ Ensure the following prerequisites are met before installing the Spaghetti Detec
 - A server with at least 4GB of RAM that meets
   the [Obico hardware requirements](https://www.obico.io/docs/server-guides/hardware-requirements/).
 
+
+<br>
+
 > **_NOTE:_** The integration does not support the following devices:
 
 | Device                   | Compatibility | 
@@ -45,14 +48,12 @@ Follow these steps to set up the Spaghetti Detection Integration:
     - Choose between installing it as a Home Assistant Addon or as a standalone Docker container.
 
 2. **Install `Bambu Lab P1 - Spaghetti Detection` Home Assistant Integration**
-3. **Install Spaghetti Detection Automation Blueprint**
+3. **Install Home Assistant Spaghetti Detection Automation Blueprint**
 
 For detailed installation instructions and troubleshooting tips, refer to
 the [Installation Guide](#link-to-installation-guide).
 
 ## 1. Install Obico ML Server
-
-___
 
 ### Install Obico ML Server as Home Assistant Addon
 
@@ -72,19 +73,17 @@ To install Obico ML server as a Home Assistant Add-on you have 2 options:
 1. Create docker container using the following command:
 
        docker create container \
-           --restart unless-stopped \
-           --env ML_API_TOKEN=obico_secret_token \
-           --expose 3333:3333 \
-           --name ha_bambulab_p1_spaghetti_detection \
-           nberk/ha_bambulab_p1_spaghetti_detection_standalone
+         --restart unless-stopped \
+         --env ML_API_TOKEN=obico_secret_token \
+         --expose 3333:3333 \
+         --name ha_bambulab_p1_spaghetti_detection \
+         nberk/ha_bambulab_p1_spaghetti_detection_standalone
 
 2. Start the container using the following command:
 
        docker start ha_bambulab_p1_spaghetti_detection
 
-## 2. Install `Bambu Lab P1 - Spaghetti Detection` Home Assistant Integration
-
-___
+## 2. Install Home Assistant Integration
 
 ### HACS
 
@@ -99,18 +98,18 @@ ___
 Manually copy the contents of the custom_components folder to your Home Assistant config/custom_components folder. After
 restarting Home Assistant, add and configure the integration through the native integration setup.
 
-## 3. Install Spaghetti Detection Automation Blueprint
+## 3. Install Home Assistant Automation Blueprint
 
-___
 1. Click the button below to import the Spaghetti Detection blueprint:
 
 [![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://github.com/nberktumer/ha-bambulab-p1-spaghetti-detection/blob/main/blueprints/spaghetti_detection.yaml)
 
-2. Go to the imported blueprint and create automation:
+2. Go to the imported blueprint and create the automation:
 
 ![Configure the automation](docs/images/blueprint_installation.png)
 
 ### Blueprint Parameters
+
 
 | Parameter                   | Description                                                                                                                                                                                                                                                                                                                                     |
 |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
