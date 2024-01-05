@@ -365,7 +365,7 @@ action:
         - if:
             - condition: template
               value_template: >-
-                {{ now() - states('datetime.bambu_lab_p1_spaghetti_detection_last_notif_time') | as_datetime | as_local < timedelta(minutes=1) }}
+                {{ now() - states('datetime.bambu_lab_p1_spaghetti_detection_last_notify_time') | as_datetime | as_local < timedelta(minutes=1) }}
           then:
             - stop: ""
           alias: >-
