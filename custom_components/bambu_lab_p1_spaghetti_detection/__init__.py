@@ -1,4 +1,3 @@
-"""The Bambu Lab component."""
 import logging
 
 import aiohttp

@@ -1,6 +1,5 @@
 ### Contribution
-Want to contribute to ha-bambulab? Great! We have a few small asks though!
+Excited to contribute to **ha-bambu-lab-p1-spaghetti-detection**? Fantastic! Here's what you need to know:
 
-- Please do not fork and PR against the main branch
-- Use the develop branch, this is our working area. Anything in the main branch should be considered live, released code.
-- Please name your commits accordingly, and add some context as to what you have added.
+- Please make contributions to the `develop` branch, as the `main` branch is reserved for stable, released code.
+- Clearly name your commits and provide contextual information about the changes you've made.

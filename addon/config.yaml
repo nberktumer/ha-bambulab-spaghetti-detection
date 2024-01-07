@@ -1,7 +1,7 @@
 name: "Bambu Lab P1 - Spaghetti Detection Server"
 description: "Obico ML server for detection spaghetti"
 version: "1.0.0"
-slug: "ha_bambulab_p1_spaghetti_detection_addon"
+slug: "ha_bambu_lab_p1_spaghetti_detection_addon"
 init: false
 arch:
   - amd64
